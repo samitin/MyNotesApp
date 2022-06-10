@@ -74,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="26dp"
-        android:layout_gravity="bottom||right"
+        android:layout_gravity="bottom|right"
         android:src="@drawable/ic_baseline_done_24"
         android:backgroundTint="@color/red_color" />
 
