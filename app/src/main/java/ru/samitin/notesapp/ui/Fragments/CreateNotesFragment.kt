@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import ru.samitin.notesapp.Model.Notes
 import ru.samitin.notesapp.R
 import ru.samitin.notesapp.ViewModel.NotesViewModel
@@ -49,7 +50,7 @@ class CreateNotesFragment : Fragment() {
         return binding.root
     }
 
-    private fun createNotes(view: View?) {
+    private fun createNotes(view: View) {
         var title = binding.editTitle.text.toString()
         var subTitle = binding.editSubTitle.text.toString()
         var notes = binding.editNotes.text.toString()
@@ -59,6 +60,7 @@ class CreateNotesFragment : Fragment() {
         val data = Notes(id = null,title = title, subTitle = subTitle, notes = notes, date = notesDate.toString(), priority = priority)
         viewModel.addNotes(data)
 
+        Navigation.findNavController(view).navigate(R.id.action_createNotesFragment_to_homeFragment)
     }
 
     override fun onDestroy() {
