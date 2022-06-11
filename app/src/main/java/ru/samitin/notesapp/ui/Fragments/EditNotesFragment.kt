@@ -2,13 +2,13 @@ package ru.samitin.notesapp.ui.Fragments
 
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.view.*
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import ru.samitin.notesapp.Model.Notes
 import ru.samitin.notesapp.R
 import ru.samitin.notesapp.ViewModel.NotesViewModel
@@ -29,6 +29,7 @@ class EditNotesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentEditNotesBinding.inflate(inflater,container,false)
+        setHasOptionsMenu(true)
         binding.apply {
             editTitle.setText( notes.data.title)
             editSubTitle.setText( notes.data.subTitle)
@@ -80,6 +81,30 @@ class EditNotesFragment : Fragment() {
 
         Navigation.findNavController(view).navigate(R.id.action_editNotesFragment_to_homeFragment)
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.delete_menu,menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_delete){
+            val bottomSheet = BottomSheetDialog(requireContext(),R.style.BottomSheetStyle)
+            bottomSheet.setContentView(R.layout.dialog_delete,)
+
+            val textViewYes = bottomSheet.findViewById<TextView>(R.id.dialog_yes)
+            textViewYes?.setOnClickListener {
+                viewModel.deleteNotes(notes.data.id!!)
+                bottomSheet.dismiss()
+            }
+            val textViewNo = bottomSheet.findViewById<TextView>(R.id.dialog_no)
+            textViewNo?.setOnClickListener {
+                bottomSheet.dismiss()
+            }
+            bottomSheet.show()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroy() {
