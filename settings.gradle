@@ -5,18 +5,14 @@ pluginManagement {
         mavenCentral()
     }
     plugins{
-        id  'dagger.hilt.android.plugin'
         id 'androidx.navigation'
     }
 
     resolutionStrategy {
 
         eachPlugin {
-            if (requested.id.id == 'dagger.hilt.android.plugin') {
-                useModule("com.google.dagger:hilt-android-gradle-plugin:2.40.5")
-            }
             if (requested.id.id == 'androidx.navigation') {
-                useModule("androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5")
+                useModule("androidx.navigation:navigation-safe-args-gradle-plugin:2.4.2")
             }
         }
     }

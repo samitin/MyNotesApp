@@ -3,6 +3,7 @@ package ru.samitin.notesapp.ui.Adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import ru.samitin.notesapp.Model.Notes
 import ru.samitin.notesapp.R
@@ -25,12 +26,13 @@ class NotesAdapter(val requireContext: Context,val notesList: List<Notes>) : Rec
             notesSubtitle.text = note.subTitle
             notesDate.text = note.date
             when (note.priority){
-                "1" -> viewPriority.setBackgroundResource(R.drawable.green_dot)
+                "1" -> viewPriority.setBackgroundResource(R.drawable.red_dot)
                 "2" -> viewPriority.setBackgroundResource(R.drawable.yellow_dot)
-                "3" -> viewPriority.setBackgroundResource(R.drawable.red_dot)
+                "3" -> viewPriority.setBackgroundResource(R.drawable.green_dot)
             }
             root.setOnClickListener {
                 val action = HomeFragmentDirections.actionHomeFragmentToEditNotesFragment(data = note)
+                Navigation.findNavController(it).navigate(action)
             }
         }
     }
