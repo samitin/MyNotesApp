@@ -26,10 +26,38 @@ class HomeFragment : Fragment() {
             binding.rcvAllNotes.layoutManager = GridLayoutManager(requireContext(), 2)
             binding.rcvAllNotes.adapter = NotesAdapter(requireContext(), it)
         }
+       creteFilter()
+        return binding.root
+    }
+
+    private fun creteFilter() {
+        binding.allNotes.setOnClickListener {
+            viewModel.getNotes().observe(viewLifecycleOwner) {
+                binding.rcvAllNotes.layoutManager = GridLayoutManager(requireContext(), 2)
+                binding.rcvAllNotes.adapter = NotesAdapter(requireContext(), it)
+            }
+        }
+        binding.filterHigh.setOnClickListener {
+            viewModel.getHighNotes().observe(viewLifecycleOwner) {
+                binding.rcvAllNotes.layoutManager = GridLayoutManager(requireContext(), 2)
+                binding.rcvAllNotes.adapter = NotesAdapter(requireContext(), it)
+            }
+        }
+        binding.filterMedium.setOnClickListener {
+            viewModel.getMediumNotes().observe(viewLifecycleOwner) {
+                binding.rcvAllNotes.layoutManager = GridLayoutManager(requireContext(), 2)
+                binding.rcvAllNotes.adapter = NotesAdapter(requireContext(), it)
+            }
+        }
+        binding.filterLow.setOnClickListener {
+            viewModel.getLowNotes().observe(viewLifecycleOwner) {
+                binding.rcvAllNotes.layoutManager = GridLayoutManager(requireContext(), 2)
+                binding.rcvAllNotes.adapter = NotesAdapter(requireContext(), it)
+            }
+        }
         binding.btnAddNotes.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_createNotesFragment)
         }
-        return binding.root
     }
 
     override fun onDestroy() {
