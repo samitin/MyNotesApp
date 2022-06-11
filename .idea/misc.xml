@@ -24,6 +24,7 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.15105438232421875" />
         <entry key="app/src/main/res/layout/item_notes.xml" value="0.23412628173828126" />
         <entry key="app/src/main/res/menu/delete_menu.xml" value="0.15" />
+        <entry key="app/src/main/res/menu/search_menu.xml" value="0.15" />
       </map>
     </option>
   </component>

@@ -10,13 +10,18 @@ import ru.samitin.notesapp.R
 import ru.samitin.notesapp.databinding.ItemNotesBinding
 import ru.samitin.notesapp.ui.Fragments.HomeFragmentDirections
 
-class NotesAdapter(val requireContext: Context,val notesList: List<Notes>) : RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
+class NotesAdapter(val requireContext: Context,var notesList: List<Notes>) : RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
     class NotesViewHolder(val binding: ItemNotesBinding) : RecyclerView.ViewHolder(binding.root) {
 
+    }
+    fun filtering(newNotesList: List<Notes>){
+        notesList = newNotesList
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesViewHolder {
         return NotesViewHolder(ItemNotesBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+
     }
 
     override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
