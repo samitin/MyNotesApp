@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.*
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.navOptions
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import ru.samitin.notesapp.Model.Notes
 import ru.samitin.notesapp.R
@@ -22,6 +25,14 @@ class EditNotesFragment : Fragment() {
     private val binding get() = _binding
     private val notes by navArgs<EditNotesFragmentArgs>()
     private val viewModel: NotesViewModel by viewModels()
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            findNavController().navigate(R.id.action_editNotesFragment_to_homeFragment)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -79,7 +90,7 @@ class EditNotesFragment : Fragment() {
         notes.data.date = notesDate.toString()
         viewModel.updateNotes(notes.data)
 
-        Navigation.findNavController(view).navigate(R.id.action_editNotesFragment_to_homeFragment)
+        findNavController().navigate(R.id.action_editNotesFragment_to_homeFragment)
 
     }
 
@@ -96,6 +107,8 @@ class EditNotesFragment : Fragment() {
             val textViewYes = bottomSheet.findViewById<TextView>(R.id.dialog_yes)
             textViewYes?.setOnClickListener {
                 viewModel.deleteNotes(notes.data.id!!)
+
+                findNavController().navigate(R.id.action_editNotesFragment_to_homeFragment)
                 bottomSheet.dismiss()
             }
             val textViewNo = bottomSheet.findViewById<TextView>(R.id.dialog_no)
@@ -106,6 +119,8 @@ class EditNotesFragment : Fragment() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+
 
     override fun onDestroy() {
         super.onDestroy()

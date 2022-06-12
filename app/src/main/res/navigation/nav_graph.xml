@@ -8,32 +8,48 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="ru.samitin.notesapp.ui.Fragments.HomeFragment"
-        android:label="Notes"
+        android:label="@string/toolbar_label_notes"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_editNotesFragment"
-            app:destination="@id/editNotesFragment" />
+            app:destination="@id/editNotesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_homeFragment_to_createNotesFragment"
-            app:destination="@id/createNotesFragment" />
+            app:destination="@id/createNotesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/createNotesFragment"
         android:name="ru.samitin.notesapp.ui.Fragments.CreateNotesFragment"
-        android:label="Add new notes"
-        tools:layout="@layout/fragment_create_notes" >
+        android:label="@string/toolbar_label_add_notes"
+        tools:layout="@layout/fragment_create_notes">
         <action
             android:id="@+id/action_createNotesFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
         android:id="@+id/editNotesFragment"
         android:name="ru.samitin.notesapp.ui.Fragments.EditNotesFragment"
-        android:label="Edit Notes"
+        android:label="@string/toolbar_label_edit_notes"
         tools:layout="@layout/fragment_edit_notes" >
         <action
             android:id="@+id/action_editNotesFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"/>
         <argument
             android:name="data"
             app:argType="ru.samitin.notesapp.Model.Notes" />

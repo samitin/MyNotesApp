@@ -2,4 +2,16 @@
     <string name="app_name">NotesApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="toolbar_label_notes">Notes</string>
+    <string name="toolbar_label_add_notes">Add notes</string>
+    <string name="toolbar_label_edit_notes">Edit notes</string>
+    <string name="name_filter_high">High</string>
+    <string name="name_filter_medium">Medium</string>
+    <string name="name_filter_low">Low</string>
+    <string name="splash_description">Life is too Fast don\'t forget anything\n just Note it</string>
+    <string name="by_your_develop_here">By\n your develop here</string>
+    <string name="dialog_description">Are you sure want to delete \n This Note?</string>
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
+    <string name="search_query_hint">Enter Notes Here...</string>
 </resources>

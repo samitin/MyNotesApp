@@ -2,17 +2,27 @@ package ru.samitin.notesapp.ui.Adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import ru.samitin.notesapp.Model.Notes
 import ru.samitin.notesapp.R
 import ru.samitin.notesapp.databinding.ItemNotesBinding
 import ru.samitin.notesapp.ui.Fragments.HomeFragmentDirections
 
-class NotesAdapter(val requireContext: Context,var notesList: List<Notes>) : RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
+class NotesAdapter(var notesList: List<Notes>,private val onClick: (Notes) -> Unit) : RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
     class NotesViewHolder(val binding: ItemNotesBinding) : RecyclerView.ViewHolder(binding.root) {
 
+    }
+    val options = navOptions {
+        anim {
+            enter = R.anim.slide_in_right
+            exit = R.anim.slide_out_left
+            popEnter = R.anim.slide_in_left
+            popExit = R.anim.slide_out_right
+        }
     }
     fun filtering(newNotesList: List<Notes>){
         notesList = newNotesList
@@ -37,7 +47,8 @@ class NotesAdapter(val requireContext: Context,var notesList: List<Notes>) : Rec
             }
             root.setOnClickListener {
                 val action = HomeFragmentDirections.actionHomeFragmentToEditNotesFragment(data = note)
-                Navigation.findNavController(it).navigate(action)
+                onClick(note)
+
             }
         }
     }

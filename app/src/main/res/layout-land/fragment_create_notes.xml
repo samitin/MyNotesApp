@@ -57,7 +57,7 @@
         <EditText
             android:id="@+id/editNotes"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/fragment_create_notes_edit_notes_layout_height"
+            android:layout_height="@dimen/land_fragment_create_notes_edit_notes_layout_height"
             android:background="@drawable/edit_txt_shape"
             android:padding="@dimen/ragment_create_notes_edit_notes_padding"
             android:layout_marginTop="@dimen/ragment_create_notes_edit_notes_layout_margit_top"

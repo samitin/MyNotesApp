@@ -3,11 +3,14 @@ package ru.samitin.notesapp.ui.Fragments
 import android.os.Bundle
 import android.view.*
 import android.widget.SearchView
+import androidx.activity.addCallback
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
+
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import ru.samitin.notesapp.Model.Notes
@@ -24,6 +27,13 @@ class HomeFragment : Fragment() {
     private var oldMyNotes :List<Notes> = arrayListOf<Notes>()
     lateinit var adapter: NotesAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            activity?.finish()
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater,container,false)
@@ -33,44 +43,50 @@ class HomeFragment : Fragment() {
         binding.rcvAllNotes.layoutManager = staggeredGridLayoutManager
         viewModel.getNotes().observe(viewLifecycleOwner) {
             oldMyNotes = it
-            adapter = NotesAdapter(requireContext(), notesList = it)
+            adapter = NotesAdapter( notesList = it,onClickNote)
             binding.rcvAllNotes.adapter = adapter
         }
        creteFilter()
+
         return binding.root
+    }
+    val onClickNote ={note : Notes ->
+        val action = HomeFragmentDirections.actionHomeFragmentToEditNotesFragment(data = note)
+        findNavController().navigate(action)
     }
 
     private fun creteFilter() {
         binding.allNotes.setOnClickListener {
             viewModel.getNotes().observe(viewLifecycleOwner) {
                 oldMyNotes = it
-                adapter = NotesAdapter(requireContext(), notesList = it)
+                adapter = NotesAdapter( notesList = it,onClickNote)
                 binding.rcvAllNotes.adapter = adapter
             }
         }
         binding.filterHigh.setOnClickListener {
             viewModel.getHighNotes().observe(viewLifecycleOwner) {
                 oldMyNotes = it
-                adapter = NotesAdapter(requireContext(), notesList = it)
+                adapter = NotesAdapter( notesList = it,onClickNote)
                 binding.rcvAllNotes.adapter = adapter
             }
         }
         binding.filterMedium.setOnClickListener {
             viewModel.getMediumNotes().observe(viewLifecycleOwner) {
                 oldMyNotes = it
-                adapter = NotesAdapter(requireContext(), notesList = it)
+                adapter = NotesAdapter(it,onClickNote)
                 binding.rcvAllNotes.adapter = adapter
             }
         }
         binding.filterLow.setOnClickListener {
             viewModel.getLowNotes().observe(viewLifecycleOwner) {
                 oldMyNotes = it
-                adapter = NotesAdapter(requireContext(), notesList = it)
+                adapter = NotesAdapter( notesList = it,onClickNote)
                 binding.rcvAllNotes.adapter = adapter
             }
         }
+
         binding.btnAddNotes.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_createNotesFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_createNotesFragment)
         }
     }
 
@@ -79,7 +95,7 @@ class HomeFragment : Fragment() {
 
         val item = menu.findItem(R.id.app_bar_search)
         val searchView = item.actionView as SearchView
-        searchView.queryHint = "Enter Notes Here..."
+        searchView.queryHint = getString(R.string.search_query_hint)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false

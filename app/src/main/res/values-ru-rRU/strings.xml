@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Заметки</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="toolbar_label_notes">Заметки</string>
+    <string name="toolbar_label_add_notes">Добавить заметку</string>
+    <string name="toolbar_label_edit_notes">редактировать заметку</string>
+    <string name="name_filter_high">Высокая</string>
+    <string name="name_filter_medium">Средняя</string>
+    <string name="name_filter_low">Низкая</string>
+    <string name="splash_description">Жизнь слишком быстрая, ничего не забывай\n просто запомни это</string>
+    <string name="by_your_develop_here"> Ваш\n разработчик здесь</string>
+    <string name="dialog_description">Вы уверены, что хотите удалить \nэту заметку?</string>
+    <string name="dialog_yes">Да</string>
+    <string name="dialog_no">Нет</string>
+    <string name="search_query_hint">Ищите Заметку здесь...</string>
+</resources>

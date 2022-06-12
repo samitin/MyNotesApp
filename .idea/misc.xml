@@ -16,11 +16,13 @@
         <entry key="app/src/main/res/drawable/red_dot.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/yellow_dot.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/yes_btn.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-land/fragment_create_notes.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-land/fragment_edit_notes.xml" value="0.13854166666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.165" />
         <entry key="app/src/main/res/layout/dialog_delete.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_create_notes.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_edit_notes.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_create_notes.xml" value="0.17036132812500002" />
+        <entry key="app/src/main/res/layout/fragment_edit_notes.xml" value="0.21653594970703127" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.15105438232421875" />
         <entry key="app/src/main/res/layout/item_notes.xml" value="0.23412628173828126" />
         <entry key="app/src/main/res/menu/delete_menu.xml" value="0.15" />
